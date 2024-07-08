@@ -20,8 +20,6 @@ class Item{
   decrementQuantity() {
     this.quantity--
   }
-
-
 }
 
 class ShopManager{
@@ -50,4 +48,4 @@ const shopManager = new ShopManager();
 const keyboard = new Item("keyboard", 30, 20);
 const mouse = new Item("mouse", 10, 40);
 const monitor = new Item("monitor", 350, 10);
-const mousepad = new Item("mousepad");
+const mousepad = new Item("mousepad", 5, 100);
