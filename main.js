@@ -9,7 +9,6 @@ class Item{
     this.isInStock = true
   }
 
-  // oce Item mijenjat stanje isInStock ili ShopManager?
   notInStock() {
     this.isInStock = false
   }
@@ -34,9 +33,6 @@ class ShopManager{
     this.shop.push(item)
   }
 
-  removeFromShop(item) {
-
-  }
 }
 
 class CartManager{
@@ -47,44 +43,11 @@ class CartManager{
   addToCart(item) {
     this.cart.push(item)
   }
-
-  removeFromCart(itemId) {
-
-  }
 }
 
-
-
-
-
-const object = {
-  name: "Dario",
-  lastName: "fafa",
-  address: {
-    street: "gaga"
-  }
-}
-
-const {name, address} = object
-
-console.log(name)
-console.log(address)
-const object2 = {
-  ...object,
-  address: {
-    ...object.address
-  }
-}
-
-object2.name = "Nemanja"
-
-let a  = 5
-let b = a
-b = 10
-
-console.log("a", a)
-console.log("b",b)
-
-
-console.log("object", object)
-console.log("object2", object2)
+const cartManager = new CartManager();
+const shopManager = new ShopManager();
+const keyboard = new Item("keyboard", 30, 20);
+const mouse = new Item("mouse", 10, 40);
+const monitor = new Item("monitor", 350, 10);
+const mousepad = new Item("mousepad");
