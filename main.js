@@ -9,9 +9,20 @@ class Item{
     this.isInStock = true
   }
 
+  // oce Item mijenjat stanje isInStock ili ShopManager?
   notInStock() {
     this.isInStock = false
   }
+
+  incrementQuantity() {
+    this.quantity++
+  }
+
+  decrementQuantity() {
+    this.quantity--
+  }
+
+
 }
 
 class ShopManager{
@@ -24,7 +35,7 @@ class ShopManager{
   }
 
   removeFromShop(item) {
-  
+
   }
 }
 
@@ -41,3 +52,39 @@ class CartManager{
 
   }
 }
+
+
+
+
+
+const object = {
+  name: "Dario",
+  lastName: "fafa",
+  address: {
+    street: "gaga"
+  }
+}
+
+const {name, address} = object
+
+console.log(name)
+console.log(address)
+const object2 = {
+  ...object,
+  address: {
+    ...object.address
+  }
+}
+
+object2.name = "Nemanja"
+
+let a  = 5
+let b = a
+b = 10
+
+console.log("a", a)
+console.log("b",b)
+
+
+console.log("object", object)
+console.log("object2", object2)
