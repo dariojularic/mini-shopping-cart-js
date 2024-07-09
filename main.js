@@ -46,10 +46,10 @@ class ShopManager{
 
   renderOffer() {
     this.shop.forEach(item => {
-      const html = `<li>
+      const html = `<li class="offer-item">
                       <p class="name">${item.name}</p>
                       <p class="price">${item.price}€</p>
-                      <p class="quantity">0</p>
+                      <p class="quantity"><button><i class="fa-solid fa-minus"></i></button> 0 <button><i class="fa-solid fa-plus"></i></button></p>
                       <p class="in-stock">${item.quantity}</p>
                       <button class="add-to-cart-btn">Add To Cart</button>
                     </li>`
@@ -96,6 +96,7 @@ const mousepad = new Item("mousepad", 5, 100);
 shopManager.addToShop(keyboard)
 shopManager.addToShop(mouse)
 shopManager.addToShop(monitor)
+shopManager.addToShop(mousepad)
 // console.log(shopManager.shop.indexOf(keyboard))
 console.log(shopManager.shop)
 shopManager.renderOffer()

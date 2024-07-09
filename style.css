@@ -1,5 +1,12 @@
-.shop-offer {
-  width: 400px;
+
+.shop-offer-list {
+  width: 600px;
   height: 400px;
   border: 1px solid red;
+}
+
+
+.offer-item {
+  display: flex;
+  justify-content: space-between;
 }
