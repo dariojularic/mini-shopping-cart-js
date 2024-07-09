@@ -7,6 +7,7 @@ import './style.css'
 // const addToCartBtns = document.querySelector(".add-to-cart-btns")
 
 const shopOfferList = document.querySelector(".shop-offer-list");
+const cartList = document.querySelector(".cart-list");
 
 class Item{
   constructor(name, price, quantity) {
@@ -69,20 +70,21 @@ class CartManager{
   removeFromCart(item) {
     return this.cart.splice(this.cart.indexOf(item), 1)
   }
+
+  renderCart() {
+    this.cart.forEach(item => {
+      const html = `<li>
+                      <p class="name-cart">${item.name}</p>
+                      <p class="in-stock-cart">${item.quantity}</p>
+                      <p class="price-cart">${item.price}€</p>
+                      <button class="remove-from-cart-btn">Remove</button>
+                    </li>`
+      cartList.insertAdjacentHTML("afterbegin", html)
+    })
+  }
 }
 
-// function displayOfferName() {
-//   shopManager.shop.forEach(item => {
-//     const html = `<li>
-//                     <p class="name"></p>
-//                     <p class="price"></p>
-//                     <p class="quantity"></p>
-//                     <p class="in-stock"></p>
-//                     <button class="add-to-cart-btn"></button>
-//                   </li>
-//     `
-//   })
-// }
+
 
 const cartManager = new CartManager();
 const shopManager = new ShopManager();
@@ -95,7 +97,5 @@ shopManager.addToShop(keyboard)
 shopManager.addToShop(mouse)
 shopManager.addToShop(monitor)
 // console.log(shopManager.shop.indexOf(keyboard))
-const a = shopManager.removeFromShop(mouse)
 console.log(shopManager.shop)
-console.log(a)
 shopManager.renderOffer()
