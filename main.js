@@ -9,6 +9,9 @@ import './style.css'
 const shopOfferList = document.querySelector(".shop-offer-list");
 const cartList = document.querySelector(".cart-list");
 
+let quantity = 0
+
+
 class Item{
   constructor(name, price, quantity) {
     this.id = crypto.randomUUID()
@@ -45,8 +48,8 @@ class ShopManager{
   }
 
   renderOffer() {
+    // let quantity = 0
     this.shop.forEach(item => {
-      let quantity = 0
       const html = `<li class="offer-item">
                       <p class="name">${item.name}</p>
                       <p class="price">${item.price}€</p>
@@ -55,6 +58,19 @@ class ShopManager{
                       <button class="add-to-cart-btn">Add To Cart</button>
                     </li>`
       shopOfferList.insertAdjacentHTML("afterbegin", html)
+      document.querySelector(".quantity-paragraph").addEventListener("click", (event) => {
+        if (event.target.classList.contains(`${item.name}-minus-btn`)) {
+          quantity--
+          this.renderOffer()
+          console.log(quantity)
+        }
+
+        if (event.target.classList.contains(`${item.name}-plus-btn`)) {
+          quantity++
+          this.renderOffer()
+          console.log(quantity)
+        }
+      })
     })
   }
 }
@@ -85,14 +101,22 @@ class CartManager{
   }
 }
 
+function incrementQuantityToBuy(quantity) {
+  quantity++
+}
+
+function decrementQuantityToBuy(quantity) {
+  quantity--
+}
+
 
 
 const cartManager = new CartManager();
 const shopManager = new ShopManager();
-const keyboard = new Item("keyboard", 30, 20);
-const mouse = new Item("mouse", 10, 40);
-const monitor = new Item("monitor", 350, 10);
-const mousepad = new Item("mousepad", 5, 100);
+const keyboard = new Item("Keyboard", 30, 20);
+const mouse = new Item("Mouse", 10, 40);
+const monitor = new Item("Monitor", 350, 10);
+const mousepad = new Item("Mousepad", 5, 100);
 
 shopManager.addToShop(keyboard)
 shopManager.addToShop(mouse)
@@ -103,7 +127,12 @@ shopManager.renderOffer()
 shopOfferList.addEventListener("click", (event) => {
   console.log(event.target.classList.contains("plus-btn"))
   if (event.target.classList.contains("plus-btn")) {
-    console.log(event.target.closest(""))
 
   }
 })
+
+
+let a = 9
+console.log(a)
+a++
+console.log(a)

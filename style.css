@@ -28,3 +28,20 @@
   height: 100%;
   width: 30%;
 }
+
+.add-to-cart-btn {
+  padding: 0px 16px;
+  border-radius: 32px;
+  height: 52px;
+  border: none;
+  font-weight: 600;
+  color: white;
+  background-color: #1A73E8;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #085ac6;
+  transition: 0.3s;
+}
