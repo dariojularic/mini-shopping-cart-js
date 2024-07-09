@@ -31,6 +31,9 @@ class ShopManager{
     this.shop.push(item)
   }
 
+  removeFromShop(item) {
+    return this.shop.splice(this.shop.indexOf(item), 1)
+  }
 }
 
 class CartManager{
@@ -41,6 +44,10 @@ class CartManager{
   addToCart(item) {
     this.cart.push(item)
   }
+
+  removeFromCart(item) {
+    return this.cart.splice(this.cart.indexOf(item), 1)
+  }
 }
 
 const cartManager = new CartManager();
@@ -49,3 +56,11 @@ const keyboard = new Item("keyboard", 30, 20);
 const mouse = new Item("mouse", 10, 40);
 const monitor = new Item("monitor", 350, 10);
 const mousepad = new Item("mousepad", 5, 100);
+
+shopManager.addToShop(keyboard)
+shopManager.addToShop(mouse)
+shopManager.addToShop(monitor)
+// console.log(shopManager.shop.indexOf(keyboard))
+const a = shopManager.removeFromShop(mouse)
+console.log(shopManager.shop)
+console.log(a)
