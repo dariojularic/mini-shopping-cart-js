@@ -1,5 +1,13 @@
 import './style.css'
 
+// const itemName = document.querySelector(".item-name");
+// const itemPrice = document.querySelector(".item-price");
+// const itemQuantity = document.querySelector(".item-quantity");
+// const itemStock = document.querySelector(".item-stock");
+// const addToCartBtns = document.querySelector(".add-to-cart-btns")
+
+const shopOfferList = document.querySelector(".shop-offer-list");
+
 class Item{
   constructor(name, price, quantity) {
     this.id = crypto.randomUUID()
@@ -34,6 +42,19 @@ class ShopManager{
   removeFromShop(item) {
     return this.shop.splice(this.shop.indexOf(item), 1)
   }
+
+  renderOffer() {
+    this.shop.forEach(item => {
+      const html = `<li>
+                      <p class="name">${item.name}</p>
+                      <p class="price">${item.price}€</p>
+                      <p class="quantity">0</p>
+                      <p class="in-stock">${item.quantity}</p>
+                      <button class="add-to-cart-btn">Add To Cart</button>
+                    </li>`
+      shopOfferList.insertAdjacentHTML("afterbegin", html)
+    })
+  }
 }
 
 class CartManager{
@@ -50,6 +71,19 @@ class CartManager{
   }
 }
 
+// function displayOfferName() {
+//   shopManager.shop.forEach(item => {
+//     const html = `<li>
+//                     <p class="name"></p>
+//                     <p class="price"></p>
+//                     <p class="quantity"></p>
+//                     <p class="in-stock"></p>
+//                     <button class="add-to-cart-btn"></button>
+//                   </li>
+//     `
+//   })
+// }
+
 const cartManager = new CartManager();
 const shopManager = new ShopManager();
 const keyboard = new Item("keyboard", 30, 20);
@@ -64,3 +98,4 @@ shopManager.addToShop(monitor)
 const a = shopManager.removeFromShop(mouse)
 console.log(shopManager.shop)
 console.log(a)
+shopManager.renderOffer()
