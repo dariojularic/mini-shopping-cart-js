@@ -1,12 +1,30 @@
 
-.shop-offer-list {
-  width: 600px;
+.container {
+  display: flex;
   height: 400px;
+  width: 800px;
+
+}
+
+.shop-offer-list {
+  height: 100%;
+  width: 70%;
   border: 1px solid red;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0px 16px 0px 16px;
 }
 
 
 .offer-item {
   display: flex;
   justify-content: space-between;
+}
+
+.shopping-cart {
+  border: 1px solid green;
+  height: 100%;
+  width: 30%;
 }

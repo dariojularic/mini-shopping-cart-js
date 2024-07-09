@@ -46,10 +46,11 @@ class ShopManager{
 
   renderOffer() {
     this.shop.forEach(item => {
+      let quantity = 0
       const html = `<li class="offer-item">
                       <p class="name">${item.name}</p>
                       <p class="price">${item.price}€</p>
-                      <p class="quantity"><button><i class="fa-solid fa-minus"></i></button> 0 <button><i class="fa-solid fa-plus"></i></button></p>
+                      <p class="quantity-paragraph"><button class="${item.name}-minus-btn"><i class="fa-solid fa-minus"></i></button> <span class="quantity">${quantity}</span> <button class="plus-btn"><i class="fa-solid fa-plus"></i></button></p>
                       <p class="in-stock">${item.quantity}</p>
                       <button class="add-to-cart-btn">Add To Cart</button>
                     </li>`
@@ -97,6 +98,12 @@ shopManager.addToShop(keyboard)
 shopManager.addToShop(mouse)
 shopManager.addToShop(monitor)
 shopManager.addToShop(mousepad)
-// console.log(shopManager.shop.indexOf(keyboard))
-console.log(shopManager.shop)
 shopManager.renderOffer()
+
+shopOfferList.addEventListener("click", (event) => {
+  console.log(event.target.classList.contains("plus-btn"))
+  if (event.target.classList.contains("plus-btn")) {
+    console.log(event.target.closest(""))
+
+  }
+})
