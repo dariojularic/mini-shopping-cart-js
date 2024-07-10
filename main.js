@@ -53,7 +53,7 @@ class ShopManager{
       const html = `<li class="offer-item">
                       <p class="name">${item.name}</p>
                       <p class="price">${item.price}€</p>
-                      <p class="quantity-paragraph"><button class="${item.name}-minus-btn"><i class="fa-solid fa-minus"></i></button> <span class="quantity">${quantity}</span> <button class="plus-btn"><i class="fa-solid fa-plus"></i></button></p>
+                      <p class="quantity-paragraph"><button class="${item.name}-minus-btn"><i class="fa-solid fa-minus"></i></button> <span class="quantity">${quantity}</span> <button class="${item.name}-plus-btn"><i class="fa-solid fa-plus"></i></button></p>
                       <p class="in-stock">${item.quantity}</p>
                       <button class="add-to-cart-btn">Add To Cart</button>
                     </li>`
@@ -68,7 +68,7 @@ class ShopManager{
         if (event.target.classList.contains(`${item.name}-plus-btn`)) {
           quantity++
           this.renderOffer()
-          console.log(quantity)
+          console.log("quantity", quantity)
         }
       })
     })
@@ -124,12 +124,12 @@ shopManager.addToShop(monitor)
 shopManager.addToShop(mousepad)
 shopManager.renderOffer()
 
-shopOfferList.addEventListener("click", (event) => {
-  console.log(event.target.classList.contains("plus-btn"))
-  if (event.target.classList.contains("plus-btn")) {
+// shopOfferList.addEventListener("click", (event) => {
+//   console.log(event.target.classList.contains("plus-btn"))
+//   if (event.target.classList.contains("plus-btn")) {
 
-  }
-})
+//   }
+// })
 
 
 let a = 9
