@@ -45,3 +45,7 @@
   background-color: #085ac6;
   transition: 0.3s;
 }
+
+.fa-solid {
+  cursor: pointer;
+}

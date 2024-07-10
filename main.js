@@ -57,7 +57,8 @@ class ShopManager{
   }
 
   findItem(itemId) {
-    this.shop.find(item => item.id === itemId)
+    console.log("item ", this.shop.find(item => item.id === itemId))
+    return this.shop.find(item => item.id === itemId)
   }
 
   renderOffer() {
@@ -66,21 +67,25 @@ class ShopManager{
       const html = `<li class="offer-item" data-id="${item.id}">
                       <p class="name">${item.name}</p>
                       <p class="price">${item.price}€</p>
-                      <p class="quantity-paragraph"><button class="${item.name}-minus-btn"><i class="fa-solid fa-minus"></i></button> <span class="quantity">${quantity}</span> <button class="${item.name}-plus-btn"><i class="fa-solid fa-plus"></i></button></p>
+                      <p class="quantity-paragraph"><i class="fa-solid fa-minus ${item.name}-minus-btn"></i> <span class="quantity">${item.quantityToBuy}</span> <i class="fa-solid fa-plus ${item.name}-plus-btn"></i></p>
                       <p class="in-stock">${item.quantityInStock}</p>
                       <button class="add-to-cart-btn">Add To Cart</button>
                     </li>`
       shopOfferList.insertAdjacentHTML("afterbegin", html)
       document.querySelector(".quantity-paragraph").addEventListener("click", (event) => {
         if (event.target.classList.contains(`${item.name}-minus-btn`)) {
-          console.log(this.findItem(event.target.closest("li")));
-          this.findItem(event.target.closest("li"))
-          quantity--
+          // console.log("fafafa", this.findItem(event.target.closest("li").getAttribute("data-id")));
+          item.decrementQuantityToBuy()
+          shopOfferList.innerHTML = ""
           this.renderOffer()
+
+          // this.findItem(event.target.closest("li").getAttribute("data-id"))
+
         }
 
         if (event.target.classList.contains(`${item.name}-plus-btn`)) {
-          quantity++
+          item.incrementQuantityToBuy()
+          shopOfferList.innerHTML = ""
           this.renderOffer()
         }
       })
@@ -143,4 +148,3 @@ shopManager.renderOffer()
 
 //   }
 // })
-
