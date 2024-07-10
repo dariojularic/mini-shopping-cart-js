@@ -9,7 +9,7 @@ import './style.css'
 const shopOfferList = document.querySelector(".shop-offer-list");
 const cartList = document.querySelector(".cart-list");
 
-let quantity = 0
+
 
 
 class Item{
@@ -62,7 +62,6 @@ class ShopManager{
   }
 
   renderOffer() {
-    // let quantity = 0
     this.shop.forEach(item => {
       const html = `<li class="offer-item" data-id="${item.id}">
                       <p class="name">${item.name}</p>
@@ -72,21 +71,27 @@ class ShopManager{
                       <button class="add-to-cart-btn">Add To Cart</button>
                     </li>`
       shopOfferList.insertAdjacentHTML("afterbegin", html)
-      document.querySelector(".quantity-paragraph").addEventListener("click", (event) => {
+
+      // ocu stavit jedan eventListener na cijeli <li> ili jedan za + i - i jedan za add to cart????
+
+      shopOfferList.querySelector(".offer-item").addEventListener("click", (event) => {
         if (event.target.classList.contains(`${item.name}-minus-btn`)) {
-          // console.log("fafafa", this.findItem(event.target.closest("li").getAttribute("data-id")));
           item.decrementQuantityToBuy()
           shopOfferList.innerHTML = ""
           this.renderOffer()
-
-          // this.findItem(event.target.closest("li").getAttribute("data-id"))
-
         }
 
         if (event.target.classList.contains(`${item.name}-plus-btn`)) {
           item.incrementQuantityToBuy()
           shopOfferList.innerHTML = ""
           this.renderOffer()
+        }
+
+        if (event.target.classList.contains("add-to-cart-btn")) {
+          const hold = {...item}
+          const boughtItem = new Item(hold.name, hold.price, hold.quantityInStock)
+          console.log("boughItem", boughtItem)
+          console.log("original Item", item)
         }
       })
     })
@@ -119,13 +124,7 @@ class CartManager{
   }
 }
 
-function incrementQuantityToBuy(quantity) {
-  quantity++
-}
 
-function decrementQuantityToBuy(quantity) {
-  quantity--
-}
 
 
 
