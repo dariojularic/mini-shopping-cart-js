@@ -92,6 +92,7 @@ class ShopManager{
         if (event.target.classList.contains("add-to-cart-btn")) {
           const hold = {...item}
           const boughtItem = new Item(hold.name, hold.price, hold.quantityInStock)
+          // moram popravit Id - svaki put se radi novi umjesto da ostane isti
           console.log("boughItem", boughtItem)
           console.log("original Item", item)
         }
@@ -142,6 +143,7 @@ shopManager.addToShop(mouse)
 shopManager.addToShop(monitor)
 shopManager.addToShop(mousepad)
 shopManager.renderOffer()
+cartManager.renderCart()
 
 // shopOfferList.addEventListener("click", (event) => {
 //   console.log(event.target.classList.contains("plus-btn"))
