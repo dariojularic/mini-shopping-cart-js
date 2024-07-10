@@ -50,3 +50,13 @@
   cursor: pointer;
   font-size: 24px;
 }
+
+.quantity {
+  align-self: center;
+  justify-self: center;
+  margin: 0px 8px 0px 8px;
+}
+
+.quantity-paragraph {
+  display: flex;
+}
