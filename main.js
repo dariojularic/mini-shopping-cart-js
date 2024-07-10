@@ -75,13 +75,15 @@ class ShopManager{
       // ocu stavit jedan eventListener na cijeli <li> ili jedan za + i - i jedan za add to cart????
 
       shopOfferList.querySelector(".offer-item").addEventListener("click", (event) => {
-        if (event.target.classList.contains(`${item.name}-minus-btn`)) {
+        if (event.target.classList.contains(`${item.name}-minus-btn`) && item.quantityToBuy > 0) {
+
+
           item.decrementQuantityToBuy()
           shopOfferList.innerHTML = ""
           this.renderOffer()
         }
 
-        if (event.target.classList.contains(`${item.name}-plus-btn`)) {
+        if (event.target.classList.contains(`${item.name}-plus-btn`) && item.isInStock) {
           item.incrementQuantityToBuy()
           shopOfferList.innerHTML = ""
           this.renderOffer()
