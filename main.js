@@ -13,11 +13,12 @@ let quantity = 0
 
 
 class Item{
-  constructor(name, price, quantity) {
+  constructor(name, price, quantityInStock) {
     this.id = crypto.randomUUID()
     this.name = name
     this.price = price
-    this.quantity = quantity
+    this.quantityInStock = quantityInStock
+    this.quantityToBuy = 0
     this.isInStock = true
   }
 
@@ -25,12 +26,20 @@ class Item{
     this.isInStock = false
   }
 
-  incrementQuantity() {
-    this.quantity++
+  incrementQuantityInStock() {
+    this.quantityInStock++
   }
 
-  decrementQuantity() {
-    this.quantity--
+  decrementQuantityInStock() {
+    this.quantityInStock--
+  }
+
+  incrementQuantityToBuy() {
+    this.quantityToBuy++
+  }
+
+  decrementQuantityToBuy() {
+    this.quantityToBuy--
   }
 }
 
@@ -47,28 +56,32 @@ class ShopManager{
     return this.shop.splice(this.shop.indexOf(item), 1)
   }
 
+  findItem(itemId) {
+    this.shop.find(item => item.id === itemId)
+  }
+
   renderOffer() {
     // let quantity = 0
     this.shop.forEach(item => {
-      const html = `<li class="offer-item">
+      const html = `<li class="offer-item" data-id="${item.id}">
                       <p class="name">${item.name}</p>
                       <p class="price">${item.price}€</p>
                       <p class="quantity-paragraph"><button class="${item.name}-minus-btn"><i class="fa-solid fa-minus"></i></button> <span class="quantity">${quantity}</span> <button class="${item.name}-plus-btn"><i class="fa-solid fa-plus"></i></button></p>
-                      <p class="in-stock">${item.quantity}</p>
+                      <p class="in-stock">${item.quantityInStock}</p>
                       <button class="add-to-cart-btn">Add To Cart</button>
                     </li>`
       shopOfferList.insertAdjacentHTML("afterbegin", html)
       document.querySelector(".quantity-paragraph").addEventListener("click", (event) => {
         if (event.target.classList.contains(`${item.name}-minus-btn`)) {
+          console.log(this.findItem(event.target.closest("li")));
+          this.findItem(event.target.closest("li"))
           quantity--
           this.renderOffer()
-          console.log(quantity)
         }
 
         if (event.target.classList.contains(`${item.name}-plus-btn`)) {
           quantity++
           this.renderOffer()
-          console.log("quantity", quantity)
         }
       })
     })
@@ -131,8 +144,3 @@ shopManager.renderOffer()
 //   }
 // })
 
-
-let a = 9
-console.log(a)
-a++
-console.log(a)
