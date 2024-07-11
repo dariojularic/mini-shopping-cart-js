@@ -21,6 +21,7 @@
 .offer-item {
   display: flex;
   justify-content: space-between;
+  margin: 8px;
 }
 
 .shopping-cart {
