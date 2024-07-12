@@ -2,13 +2,13 @@
 .container {
   display: flex;
   height: 400px;
-  width: 800px;
+  width: 1200px;
 
 }
 
 .shop-offer-list {
   height: 100%;
-  width: 70%;
+  width: 60%;
   border: 1px solid red;
   margin: 0px;
   display: flex;
@@ -27,7 +27,7 @@
 .shopping-cart {
   border: 1px solid green;
   height: 100%;
-  width: 30%;
+  width: 40%;
 }
 
 .add-to-cart-btn {
@@ -60,4 +60,14 @@
 
 .quantity-paragraph {
   display: flex;
+}
+
+.cart-list {
+  list-style: none;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px;
 }

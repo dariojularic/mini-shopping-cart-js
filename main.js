@@ -118,7 +118,7 @@ class CartManager{
 
   renderCart() {
     this.cart.forEach(item => {
-      const html = `<li>
+      const html = `<li class="cart-item">
                       <p class="name-cart">${item.name}</p>
                       <p class="in-stock-cart">${item.quantityInStock}</p>
                       <p class="price-cart">${item.price}€</p>
