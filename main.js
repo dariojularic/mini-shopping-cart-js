@@ -13,12 +13,12 @@ const cartList = document.querySelector(".cart-list");
 
 
 class Item{
-  constructor(name, price, quantityInStock) {
-    this.id = crypto.randomUUID()
+  constructor(name, price, quantityInStock, id = crypto.randomUUID()) {
     this.name = name
     this.price = price
     this.quantityInStock = quantityInStock
     this.quantityToBuy = 0
+    this.id = id
     this.isInStock = true
   }
 
@@ -93,7 +93,7 @@ class ShopManager{
           const hold = {...item}
           const boughtItem = new Item(hold.name, hold.price, hold.quantityInStock)
           // moram popravit Id - svaki put se radi novi umjesto da ostane isti
-          console.log("boughItem", boughtItem)
+          console.log("boughItem", hold)
           console.log("original Item", item)
         }
       })
@@ -137,6 +137,7 @@ const keyboard = new Item("Keyboard", 30, 20);
 const mouse = new Item("Mouse", 10, 40);
 const monitor = new Item("Monitor", 350, 10);
 const mousepad = new Item("Mousepad", 5, 100);
+const da = new Item()
 
 shopManager.addToShop(keyboard)
 shopManager.addToShop(mouse)
