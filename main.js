@@ -62,6 +62,8 @@ class ShopManager{
   }
 
   renderOffer() {
+    shopOfferList.innerHTML = ""
+
     this.shop.forEach(item => {
       const html = `<li class="offer-item" data-id="${item.id}">
                       <p class="name">${item.name}</p>
@@ -79,13 +81,11 @@ class ShopManager{
 
 
           item.decrementQuantityToBuy()
-          shopOfferList.innerHTML = ""
           this.renderOffer()
         }
 
         if (event.target.classList.contains(`${item.name}-plus-btn`) && item.isInStock) {
           item.incrementQuantityToBuy()
-          shopOfferList.innerHTML = ""
           this.renderOffer()
         }
 
@@ -117,6 +117,8 @@ class CartManager{
   }
 
   renderCart() {
+    cartList.innerHTML = ""
+
     this.cart.forEach(item => {
       const html = `<li class="cart-item">
                       <p class="name-cart">${item.name}</p>
