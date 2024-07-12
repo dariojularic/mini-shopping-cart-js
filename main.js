@@ -91,10 +91,12 @@ class ShopManager{
 
         if (event.target.classList.contains("add-to-cart-btn")) {
           const hold = {...item}
-          const boughtItem = new Item(hold.name, hold.price, hold.quantityInStock)
+          const boughtItem = new Item(hold.name, hold.price, hold.quantityInStock, hold.id)
           // moram popravit Id - svaki put se radi novi umjesto da ostane isti
-          console.log("boughItem", hold)
+          console.log("boughItem", boughtItem)
           console.log("original Item", item)
+          cartManager.addToCart(boughtItem)
+          cartManager.renderCart()
         }
       })
     })
@@ -137,7 +139,6 @@ const keyboard = new Item("Keyboard", 30, 20);
 const mouse = new Item("Mouse", 10, 40);
 const monitor = new Item("Monitor", 350, 10);
 const mousepad = new Item("Mousepad", 5, 100);
-const da = new Item()
 
 shopManager.addToShop(keyboard)
 shopManager.addToShop(mouse)
