@@ -91,7 +91,7 @@ class ShopManager{
 
         if (event.target.classList.contains("add-to-cart-btn")) {
           const hold = {...item}
-          const boughtItem = new Item(hold.name, hold.price, hold.quantityInStock, hold.id)
+          const boughtItem = new Item(hold.name, hold.price, hold.quantityToBuy, hold.id)
           // moram popravit Id - svaki put se radi novi umjesto da ostane isti
           console.log("boughItem", boughtItem)
           console.log("original Item", item)
@@ -120,7 +120,7 @@ class CartManager{
     this.cart.forEach(item => {
       const html = `<li>
                       <p class="name-cart">${item.name}</p>
-                      <p class="in-stock-cart">${item.quantity}</p>
+                      <p class="in-stock-cart">${item.quantityInStock}</p>
                       <p class="price-cart">${item.price}€</p>
                       <button class="remove-from-cart-btn">Remove</button>
                     </li>`
