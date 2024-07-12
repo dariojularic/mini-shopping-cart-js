@@ -93,8 +93,6 @@ class ShopManager{
           const hold = {...item}
           const boughtItem = new Item(hold.name, hold.price, hold.quantityToBuy, hold.id)
           // moram popravit Id - svaki put se radi novi umjesto da ostane isti
-          console.log("boughItem", boughtItem)
-          console.log("original Item", item)
           cartManager.addToCart(boughtItem)
           cartManager.renderCart()
         }
@@ -108,9 +106,17 @@ class CartManager{
     this.cart = []
   }
 
-  addToCart(item) {
-    this.cart.push(item)
+  addToCart(newItem) {
+    const oldItem = this.cart.filter(item => item.id === newItem.id)
+    // if (oldItem) {
+    //   oldItem.quantityInStock += newItem.quantityToBuy
+    //   return
+    // }
+    console.log(oldItem)
+    this.cart.push(newItem)
   }
+
+
 
   removeFromCart(item) {
     return this.cart.splice(this.cart.indexOf(item), 1)
