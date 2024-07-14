@@ -152,23 +152,14 @@ cartManager.renderCart()
 
 cartList.addEventListener("click", (event) => {
   if (event.target.classList.contains("remove-from-cart-btn")) {
-    // console.log(event.target.closest("li").getAttribute("data-id"))
     const itemInShop = shopManager.findItem(event.target.closest("li").getAttribute("data-id"))
     const itemInCart = cartManager.findItem(itemInShop.id)
-    console.log("item", itemInShop)
     itemInShop.addToStock(itemInCart.quantityInStock)
     cartManager.removeFromCart(event.target.closest("li").getAttribute("data-id"))
-    console.log(cartManager.cart)
     cartManager.renderCart()
     shopManager.renderOffer()
   }
 })
-// shopOfferList.addEventListener("click", (event) => {
-//   console.log(event.target.classList.contains("plus-btn"))
-//   if (event.target.classList.contains("plus-btn")) {
-
-//   }
-// })
 
 shopOfferList.addEventListener("click", (event) => {
 
