@@ -89,7 +89,7 @@ class ShopManager{
           this.renderOffer()
         }
 
-        if (event.target.classList.contains("add-to-cart-btn")) {
+        if (event.target.classList.contains("add-to-cart-btn") && item.quantityToBuy > 0) {
           const hold = {...item}
           const boughtItem = new Item(hold.name, hold.price, hold.quantityToBuy, hold.id)
           // moram popravit Id - svaki put se radi novi umjesto da ostane isti
