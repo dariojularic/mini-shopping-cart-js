@@ -41,6 +41,10 @@ class Item{
   decrementQuantityToBuy() {
     this.quantityToBuy--
   }
+
+  restartQuantityToBuy() {
+    this.quantityToBuy = 0
+  }
 }
 
 class ShopManager{
@@ -93,8 +97,10 @@ class ShopManager{
           const hold = {...item}
           const boughtItem = new Item(hold.name, hold.price, hold.quantityToBuy, hold.id)
           // moram popravit Id - svaki put se radi novi umjesto da ostane isti
+          item.restartQuantityToBuy()
           cartManager.addToCart(boughtItem)
           cartManager.renderCart()
+          this.renderOffer()
         }
       })
     })
@@ -108,12 +114,15 @@ class CartManager{
 
   addToCart(newItem) {
     const oldItem = this.cart.find(item => item.id === newItem.id)
-    console.log(oldItem)
+    // console.log(oldItem)
     if (oldItem) {
-      oldItem.quantityInStock += newItem.quantityToBuy
+      console.log("oldItem quantitiInStock", oldItem.quantityInStock)
+      console.log("newItem quantityToBuY", newItem.quantityToBuy)
+      oldItem.quantityInStock += newItem.quantityInStock
       return
     }
-    console.log(oldItem)
+    // console.log(oldItem)
+    console.log("newItem quantityToBuY", newItem.quantityToBuy)
     this.cart.push(newItem)
   }
 
