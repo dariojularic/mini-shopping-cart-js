@@ -107,11 +107,12 @@ class CartManager{
   }
 
   addToCart(newItem) {
-    const oldItem = this.cart.filter(item => item.id === newItem.id)
-    // if (oldItem) {
-    //   oldItem.quantityInStock += newItem.quantityToBuy
-    //   return
-    // }
+    const oldItem = this.cart.find(item => item.id === newItem.id)
+    console.log(oldItem)
+    if (oldItem) {
+      oldItem.quantityInStock += newItem.quantityToBuy
+      return
+    }
     console.log(oldItem)
     this.cart.push(newItem)
   }
