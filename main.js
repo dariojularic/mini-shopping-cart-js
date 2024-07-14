@@ -65,18 +65,16 @@ class ShopManager{
   }
 
   findItem(itemId) {
-    console.log("item ", this.shop.find(item => item.id === itemId))
     return this.shop.find(item => item.id === itemId)
   }
 
   renderOffer() {
     shopOfferList.innerHTML = ""
-
     this.shop.forEach(item => {
       const html = `<li class="offer-item" data-id="${item.id}">
                       <p class="name">${item.name}</p>
                       <p class="price">${item.price}€</p>
-                      <p class="quantity-paragraph"><i class="fa-solid fa-minus ${item.name}-minus-btn"></i> <span class="quantity">${item.quantityToBuy}</span> <i class="fa-solid fa-plus ${item.name}-plus-btn"></i></p>
+                      <p class="quantity-paragraph"><i class="fa-solid fa-minus ${item.name}-minus-btn minus-btn"></i> <span class="quantity">${item.quantityToBuy}</span> <i class="fa-solid fa-plus ${item.name}-plus-btn plus-btn"></i></p>
                       <p class="in-stock">${item.quantityInStock}</p>
                       <button class="add-to-cart-btn">Add To Cart</button>
                     </li>`
@@ -84,30 +82,7 @@ class ShopManager{
 
       // ocu stavit jedan eventListener na cijeli <li> ili jedan za + i - ,a jedan za add to cart????
 
-      shopOfferList.querySelector(".offer-item").addEventListener("click", (event) => {
-        if (event.target.classList.contains(`${item.name}-minus-btn`) && item.quantityToBuy > 0) {
 
-
-          item.decrementQuantityToBuy()
-          this.renderOffer()
-        }
-
-        if (event.target.classList.contains(`${item.name}-plus-btn`) && item.quantityInStock >= (item.quantityToBuy + 1)) {
-          item.incrementQuantityToBuy()
-          this.renderOffer()
-        }
-
-        if (event.target.classList.contains("add-to-cart-btn") && item.quantityToBuy > 0) {
-          const hold = {...item}
-          const boughtItem = new Item(hold.name, hold.price, hold.quantityToBuy, hold.id)
-          // moram popravit Id - svaki put se radi novi umjesto da ostane isti
-          item.restartQuantityToBuy()
-          item.removeFromStock(boughtItem.quantityInStock)
-          cartManager.addToCart(boughtItem)
-          cartManager.renderCart()
-          this.renderOffer()
-        }
-      })
     })
   }
 }
@@ -119,29 +94,24 @@ class CartManager{
 
   addToCart(newItem) {
     const oldItem = this.cart.find(item => item.id === newItem.id)
-    // console.log(oldItem)
     if (oldItem) {
-      console.log("oldItem quantitiInStock", oldItem.quantityInStock)
-      console.log("newItem quantityToBuY", newItem.quantityToBuy)
       oldItem.quantityInStock += newItem.quantityInStock
       return
     }
-    // console.log(oldItem)
-    console.log("newItem quantityToBuY", newItem.quantityToBuy)
     this.cart.push(newItem)
   }
 
 
 
-  removeFromCart(item) {
+  removeFromCart(itemId) {
+    const item = this.cart.find(item => item.id === itemId)
     return this.cart.splice(this.cart.indexOf(item), 1)
   }
 
   renderCart() {
     cartList.innerHTML = ""
-
     this.cart.forEach(item => {
-      const html = `<li class="cart-item">
+      const html = `<li class="cart-item" data-id="${item.id}">
                       <p class="name-cart">${item.name}</p>
                       <p class="in-stock-cart">${item.quantityInStock}</p>
                       <p class="price-cart">${item.price}€</p>
@@ -170,9 +140,45 @@ shopManager.addToShop(mousepad)
 shopManager.renderOffer()
 cartManager.renderCart()
 
+
+
+cartList.addEventListener("click", (event) => {
+  if (event.target.classList.contains("remove-from-cart-btn")) {
+    // console.log(event.target.closest("li").getAttribute("data-id"))
+    cartManager.removeFromCart(event.target.closest("li").getAttribute("data-id"))
+  }
+})
 // shopOfferList.addEventListener("click", (event) => {
 //   console.log(event.target.classList.contains("plus-btn"))
 //   if (event.target.classList.contains("plus-btn")) {
 
 //   }
 // })
+
+shopOfferList.addEventListener("click", (event) => {
+
+  const item = shopManager.findItem(event.target.closest("li").getAttribute("data-id"))
+  if (event.target.classList.contains(`minus-btn`) && item.quantityToBuy > 0) {
+
+
+    item.decrementQuantityToBuy()
+    shopManager.renderOffer()
+  }
+
+  console.log(item)
+  if (event.target.classList.contains(`plus-btn`) && item.quantityInStock >= (item.quantityToBuy + 1)) {
+    console.log(item)
+    item.incrementQuantityToBuy()
+    shopManager.renderOffer()
+  }
+
+  if (event.target.classList.contains("add-to-cart-btn") && item.quantityToBuy > 0) {
+    const hold = {...item}
+    const boughtItem = new Item(hold.name, hold.price, hold.quantityToBuy, hold.id)
+    item.restartQuantityToBuy()
+    item.removeFromStock(boughtItem.quantityInStock)
+    cartManager.addToCart(boughtItem)
+    cartManager.renderCart()
+    shopManager.renderOffer()
+  }
+})
