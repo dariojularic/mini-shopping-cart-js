@@ -45,6 +45,10 @@ class Item{
   restartQuantityToBuy() {
     this.quantityToBuy = 0
   }
+
+  removeFromStock(number) {
+    this.quantityInStock -= number
+  }
 }
 
 class ShopManager{
@@ -78,7 +82,7 @@ class ShopManager{
                     </li>`
       shopOfferList.insertAdjacentHTML("afterbegin", html)
 
-      // ocu stavit jedan eventListener na cijeli <li> ili jedan za + i - i jedan za add to cart????
+      // ocu stavit jedan eventListener na cijeli <li> ili jedan za + i - ,a jedan za add to cart????
 
       shopOfferList.querySelector(".offer-item").addEventListener("click", (event) => {
         if (event.target.classList.contains(`${item.name}-minus-btn`) && item.quantityToBuy > 0) {
@@ -88,7 +92,7 @@ class ShopManager{
           this.renderOffer()
         }
 
-        if (event.target.classList.contains(`${item.name}-plus-btn`) && item.isInStock) {
+        if (event.target.classList.contains(`${item.name}-plus-btn`) && item.quantityInStock >= (item.quantityToBuy + 1)) {
           item.incrementQuantityToBuy()
           this.renderOffer()
         }
@@ -98,6 +102,7 @@ class ShopManager{
           const boughtItem = new Item(hold.name, hold.price, hold.quantityToBuy, hold.id)
           // moram popravit Id - svaki put se radi novi umjesto da ostane isti
           item.restartQuantityToBuy()
+          item.removeFromStock(boughtItem.quantityInStock)
           cartManager.addToCart(boughtItem)
           cartManager.renderCart()
           this.renderOffer()
