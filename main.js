@@ -49,6 +49,10 @@ class Item{
   removeFromStock(number) {
     this.quantityInStock -= number
   }
+
+  addToStock(number) {
+    this.quantityInStock += number
+  }
 }
 
 class ShopManager{
@@ -101,6 +105,10 @@ class CartManager{
     this.cart.push(newItem)
   }
 
+  findItem(itemId) {
+    return this.cart.find(item => item.id === itemId)
+  }
+
 
 
   removeFromCart(itemId) {
@@ -145,7 +153,14 @@ cartManager.renderCart()
 cartList.addEventListener("click", (event) => {
   if (event.target.classList.contains("remove-from-cart-btn")) {
     // console.log(event.target.closest("li").getAttribute("data-id"))
+    const itemInShop = shopManager.findItem(event.target.closest("li").getAttribute("data-id"))
+    const itemInCart = cartManager.findItem(itemInShop.id)
+    console.log("item", itemInShop)
+    itemInShop.addToStock(itemInCart.quantityInStock)
     cartManager.removeFromCart(event.target.closest("li").getAttribute("data-id"))
+    console.log(cartManager.cart)
+    cartManager.renderCart()
+    shopManager.renderOffer()
   }
 })
 // shopOfferList.addEventListener("click", (event) => {
@@ -159,15 +174,11 @@ shopOfferList.addEventListener("click", (event) => {
 
   const item = shopManager.findItem(event.target.closest("li").getAttribute("data-id"))
   if (event.target.classList.contains(`minus-btn`) && item.quantityToBuy > 0) {
-
-
     item.decrementQuantityToBuy()
     shopManager.renderOffer()
   }
 
-  console.log(item)
   if (event.target.classList.contains(`plus-btn`) && item.quantityInStock >= (item.quantityToBuy + 1)) {
-    console.log(item)
     item.incrementQuantityToBuy()
     shopManager.renderOffer()
   }
