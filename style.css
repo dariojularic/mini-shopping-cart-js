@@ -71,3 +71,12 @@
   justify-content: space-between;
   margin: 8px;
 }
+
+.a {
+  width: 100px;
+  text-align: center;
+}
+
+.price {
+  align-content: start;
+}

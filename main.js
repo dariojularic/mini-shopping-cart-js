@@ -8,8 +8,7 @@ import './style.css'
 
 const shopOfferList = document.querySelector(".shop-offer-list");
 const cartList = document.querySelector(".cart-list");
-
-
+const finance = document.querySelector(".finance");
 
 
 class Item{
@@ -76,11 +75,11 @@ class ShopManager{
     shopOfferList.innerHTML = ""
     this.shop.forEach(item => {
       const html = `<li class="offer-item" data-id="${item.id}">
-                      <p class="name">${item.name}</p>
-                      <p class="price">${item.price}€</p>
-                      <p class="quantity-paragraph"><i class="fa-solid fa-minus ${item.name}-minus-btn minus-btn"></i> <span class="quantity">${item.quantityToBuy}</span> <i class="fa-solid fa-plus ${item.name}-plus-btn plus-btn"></i></p>
-                      <p class="in-stock">${item.quantityInStock}</p>
-                      <button class="add-to-cart-btn">Add To Cart</button>
+                      <p class="name a">${item.name}</p>
+                      <p class="price a">${item.price}€</p>
+                      <p class="quantity-paragraph a"><i class="fa-solid fa-minus ${item.name}-minus-btn minus-btn"></i> <span class="quantity">${item.quantityToBuy}</span> <i class="fa-solid fa-plus ${item.name}-plus-btn plus-btn"></i></p>
+                      <p class="in-stock a">In Stock: ${item.quantityInStock}</p>
+                      <button class="add-to-cart-btn a">Add To Cart</button>
                     </li>`
       shopOfferList.insertAdjacentHTML("afterbegin", html)
 
@@ -130,8 +129,12 @@ class CartManager{
   }
 }
 
+function displayFinance(total) {
+  finance.innerHTML = `Price: ${total / 1.2} Taxes: 20% Total: ${total}`
+}
 
 
+displayFinance(1000)
 
 
 const cartManager = new CartManager();
