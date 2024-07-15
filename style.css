@@ -71,6 +71,7 @@ body {
 .cart-list {
   list-style: none;
   padding: 0px;
+  height: 320px;
 }
 
 .cart-item {

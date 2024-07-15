@@ -137,11 +137,10 @@ class CartManager{
 }
 
 function displayFinance(total) {
-  finance.innerHTML = `Price: ${total - (total * 0.2)} Taxes: 20% Total: ${total}`
+  finance.innerHTML = `Price: ${total - (total * 0.2)}€ Taxes: 20% Total: ${total}€`
 }
 
 
-displayFinance(1100)
 
 
 const cartManager = new CartManager();
@@ -192,5 +191,6 @@ shopOfferList.addEventListener("click", (event) => {
     cartManager.addToCart(boughtItem)
     cartManager.renderCart()
     shopManager.renderOffer()
+    displayFinance(cartManager.totalPrice())
   }
 })
