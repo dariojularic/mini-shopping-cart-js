@@ -108,6 +108,13 @@ class CartManager{
     return this.cart.find(item => item.id === itemId)
   }
 
+  totalPrice() {
+    let result = 0
+    this.cart.forEach(item => {
+      result += (item.price * item.quantityInStock)
+    })
+    return result
+  }
 
 
   removeFromCart(itemId) {
@@ -130,11 +137,11 @@ class CartManager{
 }
 
 function displayFinance(total) {
-  finance.innerHTML = `Price: ${total / 1.2} Taxes: 20% Total: ${total}`
+  finance.innerHTML = `Price: ${total - (total * 0.2)} Taxes: 20% Total: ${total}`
 }
 
 
-displayFinance(1000)
+displayFinance(1100)
 
 
 const cartManager = new CartManager();
