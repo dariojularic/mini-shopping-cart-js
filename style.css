@@ -64,6 +64,7 @@
 
 .cart-list {
   list-style: none;
+  padding: 0px;
 }
 
 .cart-item {
@@ -79,4 +80,21 @@
 
 .price {
   align-content: start;
+}
+
+.remove-from-cart-btn {
+  padding: 0px 16px;
+  border-radius: 32px;
+  height: 52px;
+  border: none;
+  font-weight: 600;
+  color: white;
+  background-color: #f84545;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.remove-from-cart-btn:hover {
+  background-color: #d91a1a;
+  transition: 0.3s;
 }

@@ -119,10 +119,10 @@ class CartManager{
     cartList.innerHTML = ""
     this.cart.forEach(item => {
       const html = `<li class="cart-item" data-id="${item.id}">
-                      <p class="name-cart">${item.name}</p>
-                      <p class="in-stock-cart">${item.quantityInStock}</p>
-                      <p class="price-cart">${item.price}€</p>
-                      <button class="remove-from-cart-btn">Remove</button>
+                      <p class="name-cart a">${item.name}</p>
+                      <p class="in-stock-cart a">${item.quantityInStock}</p>
+                      <p class="price-cart a">${item.price}€</p>
+                      <button class="remove-from-cart-btn a">Remove</button>
                     </li>`
       cartList.insertAdjacentHTML("afterbegin", html)
     })
