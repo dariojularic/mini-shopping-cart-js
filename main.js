@@ -142,17 +142,19 @@ function displayFinance(total) {
 }
 
 function showMyCart() {
+  shoppingCart.classList.remove("hidden")
   shoppingCart.style.transition = "0.5s"
-  shoppingCart.style.transform = "translateX(360px)"
-  shoppingCart.style.opacity = 1;
-  shoppingCart.style.zIndex = 1000;
+  shoppingCart.style.transform = "translateX(356px)"
+  // shoppingCart.style.opacity = 1;
+  // shoppingCart.style.zIndex = 1000;
 }
 
 function hideMyCart() {
+  shoppingCart.classList.add("hidden")
   shoppingCart.style.transition = "0.5s"
-  shoppingCart.style.transform = "translateX(-360px)"
-  shoppingCart.style.opacity = 0;
-  shoppingCart.style.zIndex = -1;
+  shoppingCart.style.transform = "translateX(-160px)"
+  // shoppingCart.style.opacity = 0;
+  // shoppingCart.style.zIndex = -1;
 }
 
 
@@ -215,5 +217,6 @@ shopOfferList.addEventListener("click", (event) => {
 
 cartIcon.addEventListener("click", () => {
   console.log(shoppingCart)
-  showMyCart()
+  if (shoppingCart.classList.contains("hidden")) showMyCart()
+  else hideMyCart()
 })
