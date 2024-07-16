@@ -156,6 +156,7 @@ shopManager.addToShop(monitor)
 shopManager.addToShop(mousepad)
 shopManager.renderOffer()
 cartManager.renderCart()
+displayFinance(cartManager.totalPrice())
 
 
 
@@ -167,6 +168,7 @@ cartList.addEventListener("click", (event) => {
     cartManager.removeFromCart(event.target.closest("li").getAttribute("data-id"))
     cartManager.renderCart()
     shopManager.renderOffer()
+    displayFinance(cartManager.totalPrice())
   }
 })
 

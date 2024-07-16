@@ -9,7 +9,7 @@ body {
   display: flex;
   height: 400px;
   width: 1200px;
-
+  position: relative;
 }
 
 .shop-offer-list {
@@ -34,6 +34,10 @@ body {
   border: 1px solid green;
   height: 100%;
   width: 40%;
+  position: absolute;
+  background-color: whitesmoke;
+  z-index: -1;
+  left: 240px
 }
 
 .add-to-cart-btn {
