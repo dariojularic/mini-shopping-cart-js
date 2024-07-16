@@ -34,9 +34,9 @@ body {
   border: 1px solid green;
   height: 100%;
   width: 40%;
-  position: absolute;
+  /* position: absolute; */
   background-color: whitesmoke;
-  z-index: -1;
+  /* z-index: -1; */
   left: 240px
 }
 
@@ -47,9 +47,10 @@ body {
   border: none;
   font-weight: 600;
   color: white;
-  background-color: #1A73E8;
+  background-color: #698474;
   transition: 0.3s;
   cursor: pointer;
+  align-self: center;
 }
 
 .add-to-cart-btn:hover {
