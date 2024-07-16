@@ -141,6 +141,20 @@ function displayFinance(total) {
   finance.innerHTML = `<span>Price: ${total - (total * 0.2)}€</span> <span>Taxes: 20% </span> <span> Total: ${total}€ </span>`
 }
 
+function showMyCart() {
+  shoppingCart.style.transition = "0.5s"
+  shoppingCart.style.transform = "translateX(360px)"
+  shoppingCart.style.opacity = 1;
+  shoppingCart.style.zIndex = 1000;
+}
+
+function hideMyCart() {
+  shoppingCart.style.transition = "0.5s"
+  shoppingCart.style.transform = "translateX(-360px)"
+  shoppingCart.style.opacity = 0;
+  shoppingCart.style.zIndex = -1;
+}
+
 
 
 
@@ -195,11 +209,11 @@ shopOfferList.addEventListener("click", (event) => {
     cartManager.renderCart()
     shopManager.renderOffer()
     displayFinance(cartManager.totalPrice())
+    showMyCart()
   }
 })
 
 cartIcon.addEventListener("click", () => {
   console.log(shoppingCart)
-  shoppingCart.style.transition = "0.5s"
-  shoppingCart.style.transform = "translateX(510px)"
+  showMyCart()
 })

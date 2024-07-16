@@ -9,7 +9,7 @@ body {
 .container {
   display: flex;
   height: 400px;
-  width: 1200px;
+  width: 800px;
   position: relative;
 }
 
@@ -37,7 +37,9 @@ body {
   position: absolute;
   background-color: #DCA47C;
   z-index: -1;
-  left: 240px
+  left: 190px;
+  top: 89px;
+  opacity: 0;
 }
 
 .add-to-cart-btn {
