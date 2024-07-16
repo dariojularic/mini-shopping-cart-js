@@ -9,7 +9,8 @@ import './style.css'
 const shopOfferList = document.querySelector(".shop-offer-list");
 const cartList = document.querySelector(".cart-list");
 const finance = document.querySelector(".finance");
-
+const cartIcon = document.querySelector(".fa-cart-shopping");
+const shoppingCart = document.querySelector(".shopping-cart")
 
 class Item{
   constructor(name, price, quantityInStock, id = crypto.randomUUID()) {
@@ -195,4 +196,10 @@ shopOfferList.addEventListener("click", (event) => {
     shopManager.renderOffer()
     displayFinance(cartManager.totalPrice())
   }
+})
+
+cartIcon.addEventListener("click", () => {
+  console.log(shoppingCart)
+  shoppingCart.style.transition = "0.5s"
+  shoppingCart.style.transform = "translateX(510px)"
 })
