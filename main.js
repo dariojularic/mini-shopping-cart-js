@@ -137,7 +137,7 @@ class CartManager{
 }
 
 function displayFinance(total) {
-  finance.innerHTML = `Price: ${total - (total * 0.2)}€ Taxes: 20% Total: ${total}€`
+  finance.innerHTML = `<span>Price: ${total - (total * 0.2)}€</span> <span>Taxes: 20% </span> <span> Total: ${total}€ </span>`
 }
 
 
