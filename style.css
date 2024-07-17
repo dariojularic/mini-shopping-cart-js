@@ -9,13 +9,13 @@ body {
 .container {
   display: flex;
   height: 400px;
-  width: 800px;
+  width: 1000px;
   position: relative;
 }
 
 .shop-offer-list {
   height: 100%;
-  /* width: 60%; */
+  width: 100%;
   margin: 0px;
   display: flex;
   flex-direction: column;
@@ -35,11 +35,11 @@ body {
 
 .shopping-cart {
   height: 99%;
-  width: 40%;
+  width: 35%;
   position: absolute;
   background-color: #DCA47C;
   /* z-index: -1; */
-  left: 190px;
+  left: 224px;
   top: 90px;
   /* opacity: 0; */
 }
