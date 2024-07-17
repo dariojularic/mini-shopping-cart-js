@@ -1,11 +1,5 @@
 import './style.css'
 
-// const itemName = document.querySelector(".item-name");
-// const itemPrice = document.querySelector(".item-price");
-// const itemQuantity = document.querySelector(".item-quantity");
-// const itemStock = document.querySelector(".item-stock");
-// const addToCartBtns = document.querySelector(".add-to-cart-btns")
-
 const shopOfferList = document.querySelector(".shop-offer-list");
 const cartList = document.querySelector(".cart-list");
 const finance = document.querySelector(".finance");
@@ -20,18 +14,6 @@ class Item{
     this.quantityToBuy = 0
     this.id = id
     this.isInStock = true
-  }
-
-  notInStock() {
-    this.isInStock = false
-  }
-
-  incrementQuantityInStock() {
-    this.quantityInStock++
-  }
-
-  decrementQuantityInStock() {
-    this.quantityInStock--
   }
 
   incrementQuantityToBuy() {
@@ -83,10 +65,6 @@ class ShopManager{
                       <button class="add-to-cart-btn a">Add To Cart</button>
                     </li>`
       shopOfferList.insertAdjacentHTML("afterbegin", html)
-
-      // ocu stavit jedan eventListener na cijeli <li> ili jedan za + i - ,a jedan za add to cart????
-
-
     })
   }
 }
@@ -117,7 +95,6 @@ class CartManager{
     return result
   }
 
-
   removeFromCart(itemId) {
     const item = this.cart.find(item => item.id === itemId)
     return this.cart.splice(this.cart.indexOf(item), 1)
@@ -145,20 +122,13 @@ function showMyCart() {
   shoppingCart.classList.remove("hidden")
   shoppingCart.style.transition = "0.5s"
   shoppingCart.style.transform = "translateX(356px)"
-  // shoppingCart.style.opacity = 1;
-  // shoppingCart.style.zIndex = 1000;
 }
 
 function hideMyCart() {
   shoppingCart.classList.add("hidden")
   shoppingCart.style.transition = "0.5s"
   shoppingCart.style.transform = "translateX(-160px)"
-  // shoppingCart.style.opacity = 0;
-  // shoppingCart.style.zIndex = -1;
 }
-
-
-
 
 const cartManager = new CartManager();
 const shopManager = new ShopManager();
@@ -175,8 +145,6 @@ shopManager.renderOffer()
 cartManager.renderCart()
 displayFinance(cartManager.totalPrice())
 
-
-
 cartList.addEventListener("click", (event) => {
   if (event.target.classList.contains("remove-from-cart-btn")) {
     const itemInShop = shopManager.findItem(event.target.closest("li").getAttribute("data-id"))
@@ -190,7 +158,6 @@ cartList.addEventListener("click", (event) => {
 })
 
 shopOfferList.addEventListener("click", (event) => {
-
   const item = shopManager.findItem(event.target.closest("li").getAttribute("data-id"))
   if (event.target.classList.contains(`minus-btn`) && item.quantityToBuy > 0) {
     item.decrementQuantityToBuy()

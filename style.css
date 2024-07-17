@@ -1,8 +1,6 @@
 body {
-  /* height: 100vh; */
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
 }
 
@@ -38,10 +36,8 @@ body {
   width: 35%;
   position: absolute;
   background-color: #DCA47C;
-  /* z-index: -1; */
   left: 224px;
   top: 90px;
-  /* opacity: 0; */
 }
 
 .add-to-cart-btn {
@@ -68,8 +64,6 @@ body {
   display: flex;
   justify-content: space-between;
 }
-
-
 
 .fa-solid {
   cursor: pointer;
