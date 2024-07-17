@@ -13,7 +13,6 @@ class Item{
     this.quantityInStock = quantityInStock
     this.quantityToBuy = 0
     this.id = id
-    this.isInStock = true
   }
 
   incrementQuantityToBuy() {
@@ -183,7 +182,6 @@ shopOfferList.addEventListener("click", (event) => {
 })
 
 cartIcon.addEventListener("click", () => {
-  console.log(shoppingCart)
   if (shoppingCart.classList.contains("hidden")) showMyCart()
   else hideMyCart()
 })
